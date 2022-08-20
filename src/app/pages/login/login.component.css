@@ -1,0 +1,53 @@
+#intro-video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+#p-messages {
+  color: red;
+}
+.login-container {
+  width: 480px;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, 30%);
+}
+.login-title {
+  color: #d0d0d0;
+  letter-spacing: 2px;
+  font-family: "Metamorphous", cursive;
+  font-size: 1.6rem;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+.login-card {
+  text-align: center;
+}
+.mat-form-login {
+  text-align: center;
+  width: 100%;
+}
+img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 25px #b71c1c, 0 0 30px #e57373,
+      0 0 35px #ef5350, 0 0 40px #f44336;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 35px #ff4da6, 0 0 40px #e57373,
+      0 0 45px #ef5350, 0 0 50px #f44336, 0 0 55px #b71c1c, 0 0 60px #b71c1c;
+  }
+}

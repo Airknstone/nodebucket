@@ -4,8 +4,10 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
-const EmployeeAPI = require("./routes/employee-api");
 const app = express(); // Express variable.
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
+const EmployeeAPI = require("./routes/employee-api");
 const logger = require("morgan");
 /**
  * App configurations.
@@ -34,6 +36,23 @@ mongoose
     console.log("MongoDB Error: " + err.message);
   });
 
+/* object that defines  */
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Web 450 NodeBucket",
+      version: "1.0.0",
+    },
+  },
+  apis: ["./server/routes/employee-api.js"],
+};
+
+/* This library reads your JSDoc-annotated source code and generates an OpenAPI (Swagger) specification. */
+const openapiSpecification = swaggerJsdoc(options);
+
+/* Configure express to use /api-docs route to serve swaggerJsdoc  */
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/api/employees", EmployeeAPI);
 // Wire-up the Express server.
 app.listen(PORT, () => {
