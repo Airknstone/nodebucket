@@ -1,3 +1,15 @@
+/***************************************************
+Title: index.js
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: Root Server File
+Code Attribution: https://mongoosejs.com
+                  https://expressjs.com
+                  https://www.mongodb.com
+                  https://swagger.io
+
+***********************************************/
 /**
  * Require statements
  */
@@ -36,7 +48,7 @@ mongoose
     console.log("MongoDB Error: " + err.message);
   });
 
-/* object that defines  */
+/* object that defines options for Swagger operations */
 const options = {
   definition: {
     openapi: "3.0.0",

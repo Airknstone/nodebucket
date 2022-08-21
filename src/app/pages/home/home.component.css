@@ -1,3 +1,13 @@
+/***************************************************
+Title: home.component.css
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: styling for Content Section
+Code Attribution: https://material.angular.io
+                  https://angular.io
+                  https://rxjs.dev
+***********************************************/
 .main-welcome {
   margin-top: 30px;
 }

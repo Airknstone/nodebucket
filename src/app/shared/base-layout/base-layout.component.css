@@ -1,16 +1,27 @@
+/***************************************************
+Title: base-layout.component.css
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: styles for base-layout.component.ts
+Code Attribution: https://material.angular.io
+                  https://angular.io
+                  https://rxjs.dev
+***********************************************/
 .logo {
-  margin-left: 75px;
   font-size: 24px;
-  font-weight: lighter;;
+  font-weight: lighter;
 }
 
 .navbar-container {
   padding: 5px;
+  color: var(--gryffindor-yellow);
 }
 
 .navbar-link {
   font-size: 24px;
   font-weight: lighter;
+  font-family: var(--metamorphoses-text);
 }
 
 .main-content {
@@ -36,4 +47,14 @@
 
 .bu-link:hover {
   text-decoration: underline;
+}
+
+.sidenav {
+  position: fixed;
+  height: 100vh;
+  width: 15%;
+  background-color: var(--gryffindor-red);
+}
+.sidenav-content {
+  min-height: 100vh;
 }

@@ -1,18 +1,19 @@
-/*
- Title: trejo-composer-routes.js
- Author: Professor Krasso
- Date: 04/10/2022
- Modified By: Allan Trejo
- Description: openapi documentation and restful endpoints
-*/
+/***************************************************
+Title: employee-api.js
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: Endpoints for employee APIS
+Code Attribution: https://mongoosejs.com
+                  https://expressjs.com
+                  https://www.mongodb.com
+                  https://swagger.io
+
+***********************************************/
+/* Requirements  */
 const express = require("express");
 const Employee = require("../models/employee");
-
 const router = express.Router();
-
-/*
- * APIS go Here
- */
 
 /** findEmployeeById
  * @swagger

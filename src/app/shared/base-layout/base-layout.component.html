@@ -1,35 +1,68 @@
-<div fxLayout="column">
+<!--------------------------------
+Title: base-layout.component.html
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: template for application layout
+Code Attribution: https://material.angular.io
+                  https://angular.io
 
-  <!-- navigation -->
-  <nav fxFlex>
-    <mat-toolbar>
-      <!-- navbar container -->
-      <div class="navbar-container">
+-------------------------------------->
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- sideNavigation  -->
+  <mat-sidenav #sidenav mode="side" opened class="sidenav ">
+
+    <!-- navigation -->
+    <div class="navbar-container">
+      <nav fxLayout="column">
+        <img src="../../../assets/crest2.png" alt="">
+        <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <!-- logo -->
         <button class="logo" routerLink="/" mat-button>nodebucket</button>
-
-        <button class="navbar-link" routerLink="/" mat-button>Home</button>
         <button class="navbar-link" mat-button>About</button>
+        <button class="navbar-link" mat-button>Contact</button>
+      </nav>
+    </div>
+  </mat-sidenav>
+  <!-- End Side Navigation -->
+
+  <!-- Begin Main Content -->
+  <mat-sidenav-content class="sidenav-content">
+    <!-- Logout Button -->
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu">
+        <mat-icon>perm_identity</mat-icon> Logged In
+      </button>
+      <mat-menu #profileMenu>
+        <p style="padding:10px ;">{{sessionName}}</p>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Log out</span>
+        </button>
+      </mat-menu>
+    </div>
+    <!-- End Logout Button -->
+    <div fxLayout="column">
+      <!-- main content -->
+      <div fxFlex>
+        <main class="main-content" fxFlex="100%;">
+          <router-outlet></router-outlet>
+        </main>
       </div>
-
-    </mat-toolbar>
-  </nav>
-
-  <!-- main content -->
-  <div fxFlex>
-    <main class="main-content" fxFlex="100%;">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-
-  <!-- footer -->
-  <div fxFlex>
-    <footer class="footer">
-      <mat-toolbar class="footer-content">
-        <p>
-          &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
-        </p>
-      </mat-toolbar>
-    </footer>
-  </div>
-</div>
+      <!-- End Main Content -->
+      <!-- footer -->
+      <div fxFlex>
+        <footer class="footer">
+          <mat-toolbar class="footer-content">
+            <p>
+              &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link"
+                target="_blank">Bellevue University</a>
+            </p>
+          </mat-toolbar>
+        </footer>
+      </div>
+      <!-- END footer -->
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

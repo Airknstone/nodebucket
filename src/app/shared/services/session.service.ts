@@ -1,3 +1,13 @@
+/***************************************************
+Title: session.service.ts
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: Service for Api Calls
+Code Attribution: https://material.angular.io
+                  https://angular.io
+                  https://rxjs.dev
+***********************************************/
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,10 +17,13 @@ import { Observable } from 'rxjs';
 })
 export class SessionService {
 
+  /* Inject Dependencies */
   constructor (private http: HttpClient) { }
 
   /*
-  findEmployeeById
+  findEmployeeById - http request
+  get()
+    Constructs an observable that, when subscribed, causes the configured GET request to execute on the server.
    */
 
   findEmployeeById(empId: number): Observable<any> {

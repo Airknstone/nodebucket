@@ -1,5 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Metamorphous&display=swap");
+:root {
+  --gryffindor-red: #b71c1c;
+  --gryffindor-yellow: #ffd740;
+  --metamorphoses-text: "Metamorphous", cursive;
+}
+
 html,
 body {
   height: 100%;

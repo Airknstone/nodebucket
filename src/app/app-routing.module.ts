@@ -1,3 +1,13 @@
+/***************************************************
+Title: app-routing.module.ts
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: Routing module.
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+***********************************************/
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent } from "./shared/base-layout/base-layout.component";
