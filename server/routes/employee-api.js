@@ -56,7 +56,74 @@ router.get("/:empId", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      Err: `${error}`,
+      Err: `${error.message}`,
+    });
+  }
+});
+
+/**
+ * createTask
+ * **********************/
+router.post("/:empId/tasks", async (req, res) => {
+  try {
+    Employee.findOne({ empId: req.params.empId }, function (err, emp) {
+      if (err) {
+        console.log(err);
+        res.status(501).send({
+          err: `MongoDB server error: ${err.message}`,
+        });
+      } else {
+        console.log(emp);
+        const newTask = {
+          text: req.body.text,
+        };
+        emp.todo.push(newTask);
+
+        emp.save(function (err, updatedEmp) {
+          if (err) {
+            console.log(err);
+            res.status(501).send({
+              err: `MongoDB server error: ${err.message}`,
+            });
+          } else {
+            console.log(updatedEmp);
+            res.json(updatedEmp);
+          }
+        });
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      err: `${error.message}`,
+    });
+  }
+});
+
+/**
+ * findAllTasks
+ * **********************/
+router.get("/:empId/tasks", async (req, res) => {
+  try {
+    Employee.findOne(
+      { empId: req.params.empId },
+      "empId todo done",
+      function (err, emp) {
+        if (err) {
+          console.log(err);
+          res.status(501).send({
+            err: `MongoDB Server Error: ${err.message}`,
+          });
+        } else {
+          console.log(emp);
+          res.json(emp);
+        }
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      Err: `${error.message}`,
     });
   }
 });
