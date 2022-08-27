@@ -1,0 +1,25 @@
+<div fxLayout="column">
+  <mat-card class="mat-elevation-z0">
+    <mat-card-title>Create a New Task</mat-card-title>
+    <form [formGroup]="taskForm" (ngSubmit)="taskForm.reset()">
+      <mat-form-field appearance="fill" style="width: 100% ; margin-top: 15px;">
+        <mat-label>Enter Task</mat-label>
+        <input matInput name="task" formControlName="task" placeholder="Enter a Task">
+        <mat-error *ngIf="taskForm.controls['task'].hasError('required') && taskForm.controls['task'].touched">Task is a
+          Required Field</mat-error>
+        <mat-error *ngIf="taskForm.controls['task'].hasError('minlength') && taskForm.controls['task'].touched">The task
+          field must be at least 3 characters in length</mat-error>
+        <mat-error *ngIf="taskForm.controls['task'].hasError('maxlength') && taskForm.controls['task'].touched">The task
+          field can not be more than 35 characters</mat-error>
+      </mat-form-field>
+      <div style="padding-top:50px; float: right;">
+        <button mat-button (click)="closeDialog()" style="margin-right: 30px; color:red;">Cancel <mat-icon>
+          </mat-icon></button>
+        <button class="submit-button" mat-raised-button (click)="passToParent()" [disabled]="!taskForm.valid">Add Task
+          <mat-icon>
+            add_circle</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

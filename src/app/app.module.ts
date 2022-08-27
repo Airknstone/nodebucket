@@ -33,6 +33,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogBoxComponent } from './pages/dialog-box/dialog-box.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     HomeComponent,
     AuthLayoutComponent,
     BaseLayoutComponent,
-    LoginComponent
+    LoginComponent,
+    DialogBoxComponent
+
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatSidenavModule,
     MatMenuModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

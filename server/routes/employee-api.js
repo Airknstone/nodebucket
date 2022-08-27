@@ -14,6 +14,8 @@ Code Attribution: https://mongoosejs.com
 const express = require("express");
 const Employee = require("../models/employee");
 const router = express.Router();
+const BaseResponse = require("../models/base-response");
+const { response } = require("express");
 
 /** findEmployeeById
  * @swagger
@@ -44,20 +46,37 @@ router.get("/:empId", async (req, res) => {
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, emp) {
       if (err) {
-        console.log(err);
-        res.status(501).send({
-          err: `MongoDB Server Error: ${err.message}`,
-        });
+        const mongoResponse = new BaseResponse(
+          501,
+          "MongoDB Server Error!",
+          err
+        );
+        console.log(mongoResponse.toObject());
+        res.status(501).send(mongoResponse.toObject());
       } else {
-        console.log(emp);
-        res.json(emp);
+        if (emp) {
+          const findEmployeeByIdResponse = new BaseResponse(
+            200,
+            "Query Successful!",
+            emp
+          );
+          console.log(findEmployeeByIdResponse.toObject());
+          res.json(findEmployeeByIdResponse.toObject());
+        } else {
+          const notFoundEmployeeResponse = new BaseResponse(
+            200,
+            "Invalid Employee ID. Please Try Again!",
+            null
+          );
+          console.log(notFoundEmployeeResponse.toObject());
+          res.json(notFoundEmployeeResponse.toObject());
+        }
       }
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      Err: `${error.message}`,
-    });
+    const errorResponse = new BaseResponse(500, "Internal Server Error", error);
+    console.log(errorResponse.toObject());
+    res.status(500).send(errorResponse.toObject());
   }
 });
 
@@ -70,7 +89,7 @@ router.post("/:empId/tasks", async (req, res) => {
       if (err) {
         console.log(err);
         res.status(501).send({
-          err: `MongoDB server error: ${err.message}`,
+          err: `MongoDB Server Error ${err.message}`,
         });
       } else {
         console.log(emp);
@@ -82,8 +101,8 @@ router.post("/:empId/tasks", async (req, res) => {
         emp.save(function (err, updatedEmp) {
           if (err) {
             console.log(err);
-            res.status(501).send({
-              err: `MongoDB server error: ${err.message}`,
+            response.status(501).send({
+              err: `MongoDB Server Error ${err.message}`,
             });
           } else {
             console.log(updatedEmp);
@@ -93,10 +112,9 @@ router.post("/:empId/tasks", async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      err: `${error.message}`,
-    });
+    const errorResponse = new BaseResponse(500, "Internal Server Error", error);
+    console.log(errorResponse.toObject());
+    res.status(500).send(errorResponse.toObject());
   }
 });
 
@@ -112,7 +130,7 @@ router.get("/:empId/tasks", async (req, res) => {
         if (err) {
           console.log(err);
           res.status(501).send({
-            err: `MongoDB Server Error: ${err.message}`,
+            err: `MongoDB Server Error ${err.message}`,
           });
         } else {
           console.log(emp);
@@ -123,7 +141,7 @@ router.get("/:empId/tasks", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({
-      Err: `${error.message}`,
+      err: `Internal Server Error ${error.message}`,
     });
   }
 });

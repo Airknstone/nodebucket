@@ -17,3 +17,56 @@ Code Attribution: https://material.angular.io
     </span>
   </h1>
 </div>
+
+
+
+
+
+
+
+<div class="task-container">
+
+  <div fxLayout="row" fxLayoutGap="25px">
+    <!-- Col 1 -->
+    <div fxFlex>
+      <mat-card class="card-col mat-elevation-z0">
+        <mat-card-title>ToDo</mat-card-title>
+        <button class="create-task-button mat-elevation-z3" mat-button (click)="openDialog()">Create New Task
+          <mat-icon class="add-icon">add_circle</mat-icon>
+        </button>
+        <mat-card-content class="card-content">
+          <div>
+
+            <div *ngFor="let item of todo">
+              <mat-card class="task-card">
+                <mat-card-content>
+                  <div fxLayout="row">
+                    <div fxFlex>
+                      {{ item.text }}
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- END Col 1 -->
+
+
+
+    <!-- BEGIN col 2 -->
+    <div fxFlex>
+      <mat-card class="card-col mat-elevation-z0">
+        <mat-card-title>Done</mat-card-title>
+        <br>
+        <mat-card-content class="card-content">
+          stay
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- END col 2 -->
+  </div>
+
+</div>

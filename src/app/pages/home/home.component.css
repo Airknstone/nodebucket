@@ -21,3 +21,35 @@ Code Attribution: https://material.angular.io
   text-align: center;
   font-size: 14px;
 }
+.task-container {
+  padding: 20px 50px;
+}
+.card-col {
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+}
+.card-content {
+  text-align: left;
+  margin-top: 15px;
+}
+.create-task-button {
+  width: 90%;
+
+  font-size: 0.8rem;
+  padding: 3px 0;
+  color: var(--gryffindor-yellow);
+  background-color: var(--gryffindor-red);
+  border: none;
+}
+.add-icon {
+  font-size: 1.3rem;
+  position: relative;
+  right: 0px;
+  padding: 3px;
+  top: 0px;
+}
+.task-card {
+  height: 40px;
+  margin: 15px 0;
+}

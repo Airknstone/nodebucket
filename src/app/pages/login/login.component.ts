@@ -55,9 +55,10 @@ export class LoginComponent implements OnInit {
     /* call http request */
     this.sessionService.findEmployeeById(empId).subscribe({
       next: (res) => {
+        console.log(res);
         /* on success set cookiesService and navigate to base component */
-        if (res) {
-          this.employee = res;
+        if (res.data) {
+          this.employee = res.data;
           this.cookieService.set('session_user', this.employee.empId.toString(), 1);
           this.cookieService.set('session_name', `${this.employee.firstName} ${this.employee.lastName}`, 1);
           this.router.navigate([ '/' ]);
@@ -67,8 +68,8 @@ export class LoginComponent implements OnInit {
           this.errorMessages = [
             {
               severity: 'error',
-              summary: 'Error',
-              detail: " - Enter a valid Employee Id to Continue"
+              summary: 'Error - ',
+              detail: res.message
             }
           ];
         }
@@ -79,7 +80,7 @@ export class LoginComponent implements OnInit {
         this.errorMessages = [
           {
             severity: 'error',
-            summary: 'Error',
+            summary: 'Error - ',
             detail: error.message
           }
         ];

@@ -17,7 +17,7 @@ export class TasksService {
 
   /* createTasks */
   createTask(empId: number, task: string): Observable<any> {
-    return this.http.post(`/api/tasks/${empId}/tasks`, {
+    return this.http.post(`/api/employees/${empId}/tasks`, {
       text: task
     });
   }
