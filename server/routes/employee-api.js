@@ -83,6 +83,43 @@ router.get("/:empId", async (req, res) => {
 /**
  * createTask
  * **********************/
+/**
+ * createTask
+ * @swagger
+ * /api/employees/{empId}/tasks:
+ *   post:
+ *     tags:
+ *       - Employees
+ *     description: Finds employee by Id and adds Item object to Todo Array
+ *     summary: Finds employee and posts item object to ToDO array
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: employee id - empId
+ *         schema:
+ *           type: number
+ *     requestBody:
+ *       description: 1 Parameter posts as string
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - text
+ *             properties:
+ *               text:
+ *                 type: string
+ *
+ *
+ *     responses:
+ *       '200':
+ *         description: Successful Post
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB exception
+ * */
 router.post("/:empId/tasks", async (req, res) => {
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, emp) {
@@ -121,6 +158,30 @@ router.post("/:empId/tasks", async (req, res) => {
 /**
  * findAllTasks
  * **********************/
+/**
+ * findAllTasks
+ * @swagger
+ * /api/employees/{empId}/tasks:
+ *   get:
+ *     tags:
+ *       - Employees
+ *     description:  Gets all tasks by searching empId and returns todo array
+ *     summary: returns all tasks by empId
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: empId is a number associated with the user, returns all tasks by empId
+ *         schema:
+ *           type: number
+ *     responses:
+ *       '200':
+ *         description: Returns all Tasks
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB exception
+ */
 router.get("/:empId/tasks", async (req, res) => {
   try {
     Employee.findOne(

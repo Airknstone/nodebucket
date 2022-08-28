@@ -1,9 +1,25 @@
+<!--------------------------------
+Title: home.component.html
+Author: Professor Krasso
+Date: 08-20-2022
+Modified By: Allan Trejo
+Description: Main Content template
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+-------------------------------------->
+
+<!-- Dialog Modal Layout -->
+<!-- Single column -->
 <div fxLayout="column">
+  <!-- Card -->
   <mat-card class="mat-elevation-z0">
     <mat-card-title>Create a New Task</mat-card-title>
-    <form [formGroup]="taskForm" (ngSubmit)="taskForm.reset()">
+    <!-- Begin Form -->
+    <form [formGroup]="taskForm" (ngSubmit)="passToParent();taskForm.reset()">
       <mat-form-field appearance="fill" style="width: 100% ; margin-top: 15px;">
         <mat-label>Enter Task</mat-label>
+        <!-- Input and validation Errors -->
         <input matInput name="task" formControlName="task" placeholder="Enter a Task">
         <mat-error *ngIf="taskForm.controls['task'].hasError('required') && taskForm.controls['task'].touched">Task is a
           Required Field</mat-error>
@@ -13,13 +29,16 @@
           field can not be more than 35 characters</mat-error>
       </mat-form-field>
       <div style="padding-top:50px; float: right;">
+        <!-- 2 button layout, cancel and submit -->
         <button mat-button (click)="closeDialog()" style="margin-right: 30px; color:red;">Cancel <mat-icon>
           </mat-icon></button>
-        <button class="submit-button" mat-raised-button (click)="passToParent()" [disabled]="!taskForm.valid">Add Task
+        <button class="submit-button" mat-raised-button type="submit" [disabled]="!taskForm.valid">Add Task
           <mat-icon>
             add_circle</mat-icon>
         </button>
       </div>
     </form>
+    <!-- End form -->
   </mat-card>
+  <!-- End Card -->
 </div>

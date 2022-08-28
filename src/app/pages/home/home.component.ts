@@ -23,19 +23,20 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: [ './home.component.css' ]
 })
 export class HomeComponent implements OnInit {
+  /* local variables */
   employee: Employee;
   todo: Item[];
   done: Item[];
   empId: number;
 
-
+  /* dependency injection */
   constructor (private cookieService: CookieService, private taskService: TasksService, public dialog: MatDialog) {
-
+    /* initialize variables on render */
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
     this.employee = {} as Employee;
     this.todo = [];
     this.done = [];
-
+    /* subscribe to http call from taskService */
     this.taskService.findAllTasks(this.empId).subscribe({
       next: (res) => {
         this.employee = res;
@@ -48,20 +49,21 @@ export class HomeComponent implements OnInit {
       complete: () => {
         this.todo = this.employee.todo;
         this.done = this.employee.done;
-
       }
 
     });
   }
 
+  /* Opens Dialog on press from create task button in UI */
   openDialog() {
     const dialogRef = this.dialog.open(DialogBoxComponent, {
       width: '750px'
 
     });
-
+    /* listens to event data passed down from dialog when closed */
     dialogRef.afterClosed().subscribe(data => {
       console.log(data);
+      /* if there is data, pass it to createTask function */
       if (data) {
         this.createTask(data);
       }
@@ -70,6 +72,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  /* when task is created, Post to database using createTask service from taskService */
   createTask(newTask: string) {
     console.log(newTask);
     this.taskService.createTask(this.empId, newTask).subscribe({

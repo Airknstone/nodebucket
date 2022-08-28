@@ -19,11 +19,7 @@ Code Attribution: https://material.angular.io
 </div>
 
 
-
-
-
-
-
+<!-- Container -->
 <div class="task-container">
 
   <div fxLayout="row" fxLayoutGap="25px">
@@ -36,7 +32,7 @@ Code Attribution: https://material.angular.io
         </button>
         <mat-card-content class="card-content">
           <div>
-
+            <!-- For loop renders cards vertically -->
             <div *ngFor="let item of todo">
               <mat-card class="task-card">
                 <mat-card-content>

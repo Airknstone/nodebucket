@@ -1,0 +1,59 @@
+<!--------------------------------
+Title: dialog-box.component.html
+Author: Professor Krasso
+Date: 08-28-2022
+Modified By: Allan Trejo
+Description: Main Content template
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+-------------------------------------->
+
+<!-- Header -->
+<div fxLayout="column" class="main-welcome">
+
+  <h1 class="title" style="font-size: 2rem;padding:3rem 1rem;">Contact Us!</h1>
+
+</div>
+
+
+<!-- Row for 2 card layout -->
+<div fxLayout="row wrap">
+  <!-- 2 column Material Design Layout -->
+  <div fxFlex>
+    <mat-card class="mat-elevation-z0 contact-card">
+      <mat-card-title class="card-title-icon">
+        <mat-icon color="primary">navigation</mat-icon>
+      </mat-card-title>
+      <br>
+      <mat-card-content class="align-center">
+        <p>
+          505 Main Street
+        </p>
+        <p>Omaha, Nebraska</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex>
+    <mat-card class="mat-elevation-z0 contact-card">
+      <mat-card-title class="card-title-icon">
+        <mat-icon color="primary">phone</mat-icon>
+      </mat-card-title>
+      <br>
+      <mat-card-content class="align-center">
+        <p>
+          Direct: 555-555-5555
+        </p>
+        <p>Toll-free: 1-555-555-5555</p>
+        <p>Fax: 1-555-555-5555</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+<br><br><br><br>
+
+<!-- Single Column next row -->
+<div fxLayout="column">
+  <p style="text-align:center">
+    Happy to take any questions via phone or snail mail!</p>
+</div>

@@ -1,0 +1,33 @@
+/***************************************************
+Title: contact.component.css
+Author: Professor Krasso
+Date: 08-28-2022
+Modified By: Allan Trejo
+Description: Styling for Contact component template
+Code Attribution: https://mongoosejs.com
+                  https://expressjs.com
+                  https://www.mongodb.com
+                  https://swagger.io
+
+***********************************************/
+.contact-card {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  min-height: 250px;
+}
+.card-title-icon mat-icon {
+  font-size: 3rem;
+  padding: 2rem;
+}
+.card-title-icon {
+  font-size: 3rem;
+}
+.main-welcome {
+  margin-top: 30px;
+}
+
+.title {
+  text-align: center;
+  font-weight: lighter;
+}

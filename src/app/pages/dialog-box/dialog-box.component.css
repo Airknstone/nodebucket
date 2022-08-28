@@ -1,3 +1,15 @@
+/***************************************************
+Title: dialog-box.component.css
+Author: Professor Krasso
+Date: 08-28-2022
+Modified By: Allan Trejo
+Description: Styling for Dialog component modal
+Code Attribution: https://mongoosejs.com
+                  https://expressjs.com
+                  https://www.mongodb.com
+                  https://swagger.io
+
+***********************************************/
 .submit-button {
   color: var(--gryffindor-yellow);
   background-color: var(--gryffindor-red);

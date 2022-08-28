@@ -1,3 +1,4 @@
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogBoxComponent } from './dialog-box.component';
@@ -10,7 +11,7 @@ describe('DialogBoxComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DialogBoxComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DialogBoxComponent);
     component = fixture.componentInstance;

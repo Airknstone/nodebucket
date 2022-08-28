@@ -3,7 +3,7 @@ Title: session.service.ts
 Author: Professor Krasso
 Date: 08-20-2022
 Modified By: Allan Trejo
-Description: Service for Api Calls
+Description: Service to manage sessions with API call
 Code Attribution: https://material.angular.io
                   https://angular.io
                   https://rxjs.dev

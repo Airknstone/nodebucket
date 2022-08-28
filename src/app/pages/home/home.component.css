@@ -23,6 +23,7 @@ Code Attribution: https://material.angular.io
 }
 .task-container {
   padding: 20px 50px;
+  margin-bottom: 80px;
 }
 .card-col {
   text-align: center;
@@ -51,5 +52,5 @@ Code Attribution: https://material.angular.io
 }
 .task-card {
   height: 40px;
-  margin: 15px 0;
+  margin: 10px 0;
 }
