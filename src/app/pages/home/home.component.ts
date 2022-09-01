@@ -1,13 +1,13 @@
 /***************************************************
-Title: home.component.ts
-Author: Professor Krasso
-Date: 08-20-2022
-Modified By: Allan Trejo
-Description: content section component
-Code Attribution: https://material.angular.io
-                  https://angular.io
-                  https://rxjs.dev
-***********************************************/
+ Title: home.component.ts
+ Author: Professor Krasso
+ Date: 08-20-2022
+ Modified By: Allan Trejo
+ Description: content section component
+ Code Attribution: https://material.angular.io
+ https://angular.io
+ https://rxjs.dev
+ ***********************************************/
 import { Component, OnInit } from '@angular/core';
 
 import { Employee } from 'src/app/shared/models/employee.interface';
@@ -16,6 +16,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { TasksService } from '../../shared/services/tasks.service';
 import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../../shared/models/dialog-data.interface';
+import { ConfirmDialogComponent } from './../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -89,6 +91,36 @@ export class HomeComponent implements OnInit {
         /*             this.taskForm.controls[ 'task' ].setErrors({
                       'incorrect': false
                     }); */
+      }
+    });
+  }
+
+  deleteTask(taskId: string) {
+    let dialogData = {} as DialogData;
+    dialogData.header = " Delete Record Dialog";
+    dialogData.body = " Are you sure you want to delete this record?";
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: dialogData,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        if (result === 'confirm') {
+          this.taskService.deleteTask(this.empId, taskId).subscribe({
+            next: (res) => {
+              this.employee = res.data;
+            },
+            error: (error) => {
+              console.log(error);
+            },
+            complete: () => {
+              this.todo = this.employee.todo;
+              this.done = this.employee.done;
+            }
+          });
+        }
       }
     });
   }

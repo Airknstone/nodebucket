@@ -208,6 +208,54 @@ router.get("/:empId/tasks", async (req, res) => {
 });
 
 /* updateTaskAPI */
+/**
+ * updateTask
+ * @swagger
+ * /api/employees/{empId}/tasks:
+ *   put:
+ *     tags:
+ *       - Employees
+ *     description: Finds employee by Id and modifies todo and done arrays
+ *     summary: Finds employee and updates items in todo and done arrays
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: employee id - empId
+ *         schema:
+ *           type: number
+ *     requestBody:
+ *       required: true
+ *       description: 2 Parameter todo and done
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               todo:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     text:
+ *                       type: string
+ *               done:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     text:
+ *                       type: string
+ *
+ *
+ *     responses:
+ *       '200':
+ *         description: Successful Post
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB exception
+ * */
 router.put("/:empId/tasks", async (req, res) => {
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, emp) {
@@ -220,6 +268,8 @@ router.put("/:empId/tasks", async (req, res) => {
         console.log(updateTasksMongoDbError.toObject());
         res.status(501).send(updateTasksMongoDbError.toObject());
       } else {
+        /* if no error, update employee tasks by setting new
+        todo and done array of objects using params */
         console.log(emp);
 
         emp.set({
@@ -260,9 +310,42 @@ router.put("/:empId/tasks", async (req, res) => {
 });
 
 /* Delete Task */
+/**
+ * findAllTasks
+ * @swagger
+ * /api/employees/{empId}/tasks/{taskId}:
+ *   delete:
+ *     tags:
+ *       - Employees
+ *     description:  Gets all tasks by searching empId and returns todo array
+ *     summary: returns all tasks by empId
+ *     parameters:
+ *       - name: empId
+ *         in: path
+ *         required: true
+ *         description: empId is a number associated with the user, returns all tasks by empId
+ *         schema:
+ *           type: number
+ *       - name: taskId
+ *         in: path
+ *         required: true
+ *         description: empId is a number associated with the user, returns all tasks by empId
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Returns all Tasks
+ *       '300':
+ *         description: Invalid Task Id
+ *       '500':
+ *         description: Server exception
+ *       '501':
+ *         description: MongoDB exception
+ */
 router.delete("/:empId/tasks/:taskId", async (req, res) => {
   try {
     Employee.findOne({ empId: req.params.empId }, function (err, emp) {
+      /* Handle error */
       if (err) {
         const deleteTaskMongoResponse = new BaseResponse(
           501,
@@ -272,10 +355,9 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
         console.log(deleteTaskMongoResponse.toObject());
         res.status(501).send(deleteTaskMongoResponse.toObject());
       } else {
+        /* if no error search todo and done arrays for item to delete */
         console.log(emp);
-
         const taskId = req.params.taskId;
-
         const todoItem = emp.todo.find(
           (item) => item._id.toString() === taskId
         );
@@ -283,9 +365,10 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
           (item) => item._id.toString() === taskId
         );
 
+        /* If the item is inside todo array, delete from array
+          and update database */
         if (todoItem) {
           emp.todo.id(todoItem._id).remove();
-
           emp.save(function (err, updatedTodoItemEmp) {
             if (err) {
               const updatedTodoItemErrResponse = new BaseResponse(
@@ -305,6 +388,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
               res.status(200).send(updatedTodoItemSuccess.toObject());
             }
           });
+          /* If item is in done array, delete from array and update database */
         } else if (doneItem) {
           emp.done.id(todoItem._id).remove();
 
@@ -327,6 +411,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
               res.status(200).send(updatedDoneItemSuccess.toObject());
             }
           });
+          /* Invalid or not found in either arrays */
         } else {
           const invalidTaskIdResponse = new BaseResponse(
             300,

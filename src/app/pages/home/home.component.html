@@ -42,6 +42,11 @@ Code Attribution: https://material.angular.io
                     <div fxFlex>
                       {{ item.text }}
                     </div>
+                    <div fxFlex fxLayoutAlign="end" style="margin-top: -10px;">
+                      <button mat-icon-button (click)="deleteTask(item._id)">
+                        <mat-icon color="warn">delete</mat-icon>
+                      </button>
+                    </div>
                   </div>
                 </mat-card-content>
               </mat-card>
@@ -67,6 +72,11 @@ Code Attribution: https://material.angular.io
                 <div fxLayout="row">
                   <div fxFlex>
                     {{ item.text }}
+                  </div>
+                  <div fxFlex fxLayoutAlign="end" style="margin-top: -10px;">
+                    <button mat-icon-button (click)="deleteTask(item._id)">
+                      <mat-icon color="warn">delete</mat-icon>
+                    </button>
                   </div>
                 </div>
               </mat-card-content>

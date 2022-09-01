@@ -33,11 +33,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogBoxComponent } from './pages/dialog-box/dialog-box.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -50,7 +53,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DialogBoxComponent,
     ContactComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ConfirmDialogComponent
 
   ],
   imports: [
@@ -71,7 +75,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatSidenavModule,
     MatMenuModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule,
+    MatDividerModule
+
   ],
   providers: [],
   bootstrap: [ AppComponent ]
