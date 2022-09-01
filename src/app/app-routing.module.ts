@@ -16,6 +16,8 @@ import { AuthLayoutComponent } from './shared/auth-layout/auth-layout.component'
 import { LoginComponent } from './pages/login/login.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AuthGuard } from './shared/auth.guard';
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,12 @@ const routes: Routes = [
         component: ContactComponent,
         canActivate: [ AuthGuard ]
       }
+      ,
+      {
+        path: 'about',
+        component: AboutComponent,
+        canActivate: [ AuthGuard ]
+      }
     ]
   },
   {
@@ -41,6 +49,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
       }
     ]
   }

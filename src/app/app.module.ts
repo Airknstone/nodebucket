@@ -36,6 +36,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogBoxComponent } from './pages/dialog-box/dialog-box.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -46,7 +48,9 @@ import { ContactComponent } from './pages/contact/contact.component';
     BaseLayoutComponent,
     LoginComponent,
     DialogBoxComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent,
+    NotFoundComponent
 
   ],
   imports: [

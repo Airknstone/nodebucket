@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Metamorphous&display=swap");
 :root {
   --gryffindor-red: #b71c1c;
+  --gryffindor-white: white;
   --gryffindor-yellow: #ffd740;
   --metamorphoses-text: "Metamorphous", cursive;
 }

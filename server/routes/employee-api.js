@@ -207,4 +207,146 @@ router.get("/:empId/tasks", async (req, res) => {
   }
 });
 
+/* updateTaskAPI */
+router.put("/:empId/tasks", async (req, res) => {
+  try {
+    Employee.findOne({ empId: req.params.empId }, function (err, emp) {
+      if (err) {
+        const updateTasksMongoDbError = new BaseResponse(
+          501,
+          "MongoDB Server Error",
+          err
+        );
+        console.log(updateTasksMongoDbError.toObject());
+        res.status(501).send(updateTasksMongoDbError.toObject());
+      } else {
+        console.log(emp);
+
+        emp.set({
+          todo: req.body.todo,
+          done: req.body.done,
+        });
+
+        emp.save(function (err, updatedEmp) {
+          if (err) {
+            const updatedEmpMongoError = new BaseResponse(
+              501,
+              "MongoDB Server Error",
+              err
+            );
+            console.log(updatedEmpMongoError.toObject());
+            res.status(501).send(updatedEmpMongoError.toObject());
+          } else {
+            const updatedEmpResponse = new BaseResponse(
+              200,
+              "Query Successful",
+              updatedEmp
+            );
+            console.log(updatedEmpResponse.toObject());
+            res.status(200).send(updatedEmpResponse.toObject());
+          }
+        });
+      }
+    });
+  } catch (error) {
+    const updateTaskCatchError = new BaseResponse(
+      500,
+      "Internal Server Error",
+      error
+    );
+    console.log(updateTaskCatchError.toObject());
+    res.status(500).send(updateTaskCatchError.toObject());
+  }
+});
+
+/* Delete Task */
+router.delete("/:empId/tasks/:taskId", async (req, res) => {
+  try {
+    Employee.findOne({ empId: req.params.empId }, function (err, emp) {
+      if (err) {
+        const deleteTaskMongoResponse = new BaseResponse(
+          501,
+          "MongoDB Server Error",
+          err
+        );
+        console.log(deleteTaskMongoResponse.toObject());
+        res.status(501).send(deleteTaskMongoResponse.toObject());
+      } else {
+        console.log(emp);
+
+        const taskId = req.params.taskId;
+
+        const todoItem = emp.todo.find(
+          (item) => item._id.toString() === taskId
+        );
+        const doneItem = emp.done.find(
+          (item) => item._id.toString() === taskId
+        );
+
+        if (todoItem) {
+          emp.todo.id(todoItem._id).remove();
+
+          emp.save(function (err, updatedTodoItemEmp) {
+            if (err) {
+              const updatedTodoItemErrResponse = new BaseResponse(
+                501,
+                "MongoDB Server Error",
+                err
+              );
+              console.log(updatedTodoItemErrResponse.toObject());
+              res.status(501).send(updatedTodoItemErrResponse.toObject());
+            } else {
+              const updatedTodoItemSuccess = new BaseResponse(
+                200,
+                "Query Successful",
+                updatedTodoItemEmp
+              );
+              console.log(updatedTodoItemSuccess.toObject());
+              res.status(200).send(updatedTodoItemSuccess.toObject());
+            }
+          });
+        } else if (doneItem) {
+          emp.done.id(todoItem._id).remove();
+
+          emp.save(function (err, updatedTodoItemEmp) {
+            if (err) {
+              const updatedDoneItemErrResponse = new BaseResponse(
+                501,
+                "MongoDB Server Error",
+                err
+              );
+              console.log(updatedDoneItemErrResponse.toObject());
+              res.status(501).send(updatedDoneItemErrResponse.toObject());
+            } else {
+              const updatedDoneItemSuccess = new BaseResponse(
+                200,
+                "Query Successful",
+                updatedTodoItemEmp
+              );
+              console.log(updatedDoneItemSuccess.toObject());
+              res.status(200).send(updatedDoneItemSuccess.toObject());
+            }
+          });
+        } else {
+          const invalidTaskIdResponse = new BaseResponse(
+            300,
+            "Invalid TaskId",
+            taskId
+          );
+          console.log(invalidTaskIdResponse.toObject());
+          res.status(300).send(invalidTaskIdResponse.toObject());
+        }
+      }
+    });
+  } catch (error) {
+    const deleteTaskErrorResponse = new BaseResponse(
+      500,
+      "Internal Server Error",
+      error
+    );
+    console.log(deleteTaskErrorResponse.toObject());
+    res.status(500).send(deleteTaskErrorResponse.toObject());
+  }
+});
+
 module.exports = router;

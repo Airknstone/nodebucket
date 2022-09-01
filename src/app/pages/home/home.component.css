@@ -27,15 +27,16 @@ Code Attribution: https://material.angular.io
 }
 .card-col {
   text-align: center;
-  width: 60%;
+
   margin: 0 auto;
 }
 .card-content {
   text-align: left;
   margin-top: 15px;
+  overflow: hidden;
 }
 .create-task-button {
-  width: 90%;
+  width: 100%;
 
   font-size: 0.8rem;
   padding: 3px 0;

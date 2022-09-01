@@ -24,12 +24,14 @@ Code Attribution: https://material.angular.io
 
   <div fxLayout="row" fxLayoutGap="25px">
     <!-- Col 1 -->
-    <div fxFlex>
+    <div fxFlex="30">
       <mat-card class="card-col mat-elevation-z0">
         <mat-card-title>ToDo</mat-card-title>
-        <button class="create-task-button mat-elevation-z3" mat-button (click)="openDialog()">Create New Task
-          <mat-icon class="add-icon">add_circle</mat-icon>
-        </button>
+        <div fxLayout="row"> <button class="create-task-button mat-elevation-z3" mat-button
+            (click)="openDialog()">Create New Task
+            <mat-icon class="add-icon">add_circle</mat-icon>
+          </button></div>
+
         <mat-card-content class="card-content">
           <div>
             <!-- For loop renders cards vertically -->
@@ -53,16 +55,28 @@ Code Attribution: https://material.angular.io
 
 
     <!-- BEGIN col 2 -->
-    <div fxFlex>
+    <div fxFlex="30">
       <mat-card class="card-col mat-elevation-z0">
         <mat-card-title>Done</mat-card-title>
-        <br>
+        <br> <br>
         <mat-card-content class="card-content">
-          stay
+          <!-- For loop renders cards vertically -->
+          <div *ngFor="let item of done">
+            <mat-card class="task-card">
+              <mat-card-content>
+                <div fxLayout="row">
+                  <div fxFlex>
+                    {{ item.text }}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </mat-card-content>
       </mat-card>
     </div>
     <!-- END col 2 -->
+
   </div>
 
 </div>

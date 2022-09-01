@@ -28,7 +28,7 @@ Code Attribution: https://material.angular.io
         <mat-error *ngIf="taskForm.controls['task'].hasError('maxlength') && taskForm.controls['task'].touched">The task
           field can not be more than 35 characters</mat-error>
       </mat-form-field>
-      <div style="padding-top:50px; float: right;">
+      <div fxLayout="row" style="padding-top:50px; float: right;">
         <!-- 2 button layout, cancel and submit -->
         <button mat-button (click)="closeDialog()" style="margin-right: 30px; color:red;">Cancel <mat-icon>
           </mat-icon></button>
