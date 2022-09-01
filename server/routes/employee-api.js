@@ -176,7 +176,7 @@ router.post("/:empId/tasks", async (req, res) => {
  *           type: number
  *     responses:
  *       '200':
- *         description: Returns all Tasks
+ *         description: Returned all Tasks
  *       '500':
  *         description: Server exception
  *       '501':
@@ -311,7 +311,7 @@ router.put("/:empId/tasks", async (req, res) => {
 
 /* Delete Task */
 /**
- * findAllTasks
+ * deleteTask
  * @swagger
  * /api/employees/{empId}/tasks/{taskId}:
  *   delete:
@@ -334,7 +334,7 @@ router.put("/:empId/tasks", async (req, res) => {
  *           type: string
  *     responses:
  *       '200':
- *         description: Returns all Tasks
+ *         description: Task Deleted
  *       '300':
  *         description: Invalid Task Id
  *       '500':
