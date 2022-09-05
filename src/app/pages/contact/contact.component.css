@@ -30,4 +30,5 @@ Code Attribution: https://mongoosejs.com
 .title {
   text-align: center;
   font-weight: lighter;
+  text-decoration: underline var(--gryffindor-red);
 }

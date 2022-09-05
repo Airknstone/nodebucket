@@ -40,8 +40,9 @@ const routes: Routes = [
         component: AboutComponent,
         canActivate: [ AuthGuard ]
       }
-    ]
+    ],
   },
+
   {
     path: 'session',
     component: AuthLayoutComponent,
@@ -49,12 +50,11 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
-      },
-      {
-        path: '**',
-        component: NotFoundComponent
       }
     ]
+  },
+  {
+    path: '**', pathMatch: 'full', component: NotFoundComponent
   }
 ];
 

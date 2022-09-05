@@ -8,6 +8,15 @@ Code Attribution: https://material.angular.io
                   https://angular.io
                   https://rxjs.dev
 ***********************************************/
+#logout {
+  position: absolute;
+  bottom: 0;
+  color: var(--gryffindor-yellow);
+  left: 0;
+  background-color: black;
+  width: 100%;
+  word-wrap: break-word;
+}
 img {
   margin-bottom: 5vh;
 }
@@ -64,7 +73,9 @@ img {
   height: 100vh;
   width: 15%;
   background-color: var(--gryffindor-red);
+  position: fixed;
 }
 .sidenav-content {
   min-height: 100vh;
+  position: relative;
 }

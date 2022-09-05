@@ -1,12 +1,29 @@
+<!--------------------------------
+Title: confirm-dialog.component.html
+Author: Professor Krasso
+Date: 09-03-2022
+Modified By: Allan Trejo
+Description: Delete Dialog template
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+-------------------------------------->
+<!-- dialog header -->
 <h2 mat-dialog-title>{{ dialogData.header}}</h2>
 
+<!-- dialog data - should ask
+    " Delete Record Dialog";
+    " Are you sure you want to delete this record?";
+   -->
 <div mat-dialog-content>
   <p>{{ dialogData.body}}</p>
+  <!-- warning message -->
   <small style="color: rgb(192, 19, 19)">Warning! This action cannot be undone.</small>
 </div>
 
 <mat-divider></mat-divider>
 
+<!-- confirm or cancel buttons -->
 <div mat-dialog-actions fxalign="end">
   <button mat-raised-button matDialogClose="cancel" color="primary">No Thanks</button>
   <button mat-raised-button matDialogClose="confirm" color="primary" cdkFocusInitial>Confirm</button>

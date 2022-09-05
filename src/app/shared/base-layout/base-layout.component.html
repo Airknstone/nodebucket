@@ -27,25 +27,27 @@ Code Attribution: https://material.angular.io
         <button routerLink="/contact" [routerLinkActive]="['active']" class="navbar-link" mat-button>Contact</button>
       </nav>
     </div>
-  </mat-sidenav>
-  <!-- End Side Navigation -->
-
-  <!-- Begin Main Content -->
-  <mat-sidenav-content class="sidenav-content">
     <!-- Logout Button -->
-    <div>
-      <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="User Profile Menu">
-        <mat-icon>perm_identity</mat-icon>Logged in {{sessionName}}!
+    <div id="logout">
+      <button style="margin: 0 auto; width:100% ;" mat-icon-button [matMenuTriggerFor]="profileMenu"
+        aria-label="User Profile Menu">
+        <mat-icon>perm_identity</mat-icon>Logged in
       </button>
       <mat-menu #profileMenu>
 
         <button mat-menu-item (click)="logout()">
           <mat-icon>logout</mat-icon>
 
-          <span>Log out</span>
+          <span> Log out </span>{{sessionName}}
         </button>
       </mat-menu>
     </div>
+  </mat-sidenav>
+  <!-- End Side Navigation -->
+
+  <!-- Begin Main Content -->
+  <mat-sidenav-content class="sidenav-content">
+
     <!-- End Logout Button -->
     <div fxLayout="column">
       <!-- main content -->

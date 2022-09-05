@@ -41,7 +41,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -77,7 +77,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatProgressBarModule,
     MatDialogModule,
     DragDropModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
 
   ],
   providers: [],

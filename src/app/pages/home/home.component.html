@@ -33,9 +33,11 @@ Code Attribution: https://material.angular.io
           </button></div>
 
         <mat-card-content class="card-content">
-          <div>
+          <!-- being todo -->
+          <div style="min-height: 60px;" fxLayout="column" cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
+            [cdkDropListConnectedTo]="[doneList]" (cdkDropListDropped)="drop($event)">
             <!-- For loop renders cards vertically -->
-            <div *ngFor="let item of todo">
+            <div *ngFor="let item of todo" cdkDrag>
               <mat-card class="task-card">
                 <mat-card-content>
                   <div fxLayout="row">
@@ -65,22 +67,25 @@ Code Attribution: https://material.angular.io
         <mat-card-title>Done</mat-card-title>
         <br> <br>
         <mat-card-content class="card-content">
-          <!-- For loop renders cards vertically -->
-          <div *ngFor="let item of done">
-            <mat-card class="task-card">
-              <mat-card-content>
-                <div fxLayout="row">
-                  <div fxFlex>
-                    {{ item.text }}
+          <div style="min-height: 60px;" fxLayout="column" cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
+            [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="drop($event)">
+            <!-- For loop renders cards vertically -->
+            <div *ngFor="let item of done" cdkDrag>
+              <mat-card class="task-card">
+                <mat-card-content>
+                  <div fxLayout="row">
+                    <div fxFlex>
+                      {{ item.text }}
+                    </div>
+                    <div fxFlex fxLayoutAlign="end" style="margin-top: -10px;">
+                      <button mat-icon-button (click)="deleteTask(item._id)">
+                        <mat-icon color="warn">delete</mat-icon>
+                      </button>
+                    </div>
                   </div>
-                  <div fxFlex fxLayoutAlign="end" style="margin-top: -10px;">
-                    <button mat-icon-button (click)="deleteTask(item._id)">
-                      <mat-icon color="warn">delete</mat-icon>
-                    </button>
-                  </div>
-                </div>
-              </mat-card-content>
-            </mat-card>
+                </mat-card-content>
+              </mat-card>
+            </div>
           </div>
         </mat-card-content>
       </mat-card>

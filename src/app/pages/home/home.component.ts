@@ -18,6 +18,7 @@ import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogData } from '../../shared/models/dialog-data.interface';
 import { ConfirmDialogComponent } from './../../shared/confirm-dialog/confirm-dialog.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -95,19 +96,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /* Delete task initiate dialog on click */
   deleteTask(taskId: string) {
+    /* lcal variables */
     let dialogData = {} as DialogData;
     dialogData.header = " Delete Record Dialog";
     dialogData.body = " Are you sure you want to delete this record?";
 
+    /* set up angulr material dialog component */
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      /* pass data as DialogData interface */
       data: dialogData,
+      /* only close when button clicked */
       disableClose: true
     });
 
+    /* subscribe to close event */
     dialogRef.afterClosed().subscribe({
       next: (result) => {
+        /* confirm is passed from confirm button in dialog component,  */
         if (result === 'confirm') {
+          /* Call delete api */
           this.taskService.deleteTask(this.empId, taskId).subscribe({
             next: (res) => {
               this.employee = res.data;
@@ -116,11 +125,47 @@ export class HomeComponent implements OnInit {
               console.log(error);
             },
             complete: () => {
+              /* on complete update lists */
               this.todo = this.employee.todo;
               this.done = this.employee.done;
             }
           });
         }
+      }
+    });
+  }
+  /* Drag and drop Material angular */
+  drop(event: CdkDragDrop<any[]>) {
+    /* if droped into same list */
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      console.log('reodered tasks in the same column');
+      /*Drop events updates todo or done lists */
+      this.updateTaskList(this.empId, this.todo, this.done);
+    }/* moved to different container */
+    else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+
+      console.log('Moved tasks to a new column');
+      /*  drop event updates todo or done list */
+      this.updateTaskList(this.empId, this.todo, this.done);
+    }
+  }
+
+  /* Updates tasks  */
+  updateTaskList(empId: number, todo: Item[], done: Item[]): void {
+    /* updates todo and done lists  */
+    this.taskService.updateTask(empId, todo, done).subscribe({
+      next: (res) => {
+        this.employee = res.data;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        console.log(this.employee);
+        this.todo = this.employee.todo;
+        this.done = this.employee.done;
       }
     });
   }

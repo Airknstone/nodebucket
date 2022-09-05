@@ -1,0 +1,72 @@
+/***************************************************
+Title: about.component.ts
+Author: Professor Krasso
+Date: 09-03-2022
+Modified By: Allan Trejo
+Description: About page styling
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+***********************************************/
+
+.container {
+  margin-top: 40px;
+  padding: 0 3rem;
+  margin-bottom: 15rem;
+}
+
+.heading {
+  padding: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: lighter;
+  text-decoration: underline var(--gryffindor-red);
+}
+
+.hand {
+  animation: none;
+  stroke-dasharray: 500%;
+}
+.side-about {
+  font-size: 18px;
+  padding-right: 6rem;
+  line-height: 30px;
+}
+.side-about span {
+  font-size: 2rem;
+  font-family: var(--metamorphoses-text);
+}
+.middle-about {
+  font-size: 1.5rem;
+  margin-top: 3rem;
+  text-decoration: none;
+}
+.middle-about span {
+  font-size: 3rem;
+  font-family: var(--metamorphoses-text);
+}
+.bottom-about {
+  padding: 3rem;
+  font-size: 18px;
+  line-height: 30px;
+}
+.checklist {
+  width: 50%;
+  margin: 0 auto;
+}
+path {
+  stroke-dasharray: 100;
+  fill: rgb(255, 255, 255);
+  animation: dash 5s infinite;
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  50% {
+    stroke-dashoffset: 400;
+  }
+  100% {
+    stroke-dashoffset: 150;
+  }
+}

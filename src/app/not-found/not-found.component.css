@@ -1,0 +1,28 @@
+/***************************************************
+Title: not-found.component.css
+Author: Professor Krasso
+Date: 09-03-2022
+Modified By: Allan Trejo
+Description: 404 component styling
+Code Attribution: https://material.angular.io
+                  https://angular.io
+
+***********************************************/
+.container {
+  width: 100%;
+  height: 100%;
+}
+.not-found {
+  padding: 3rem;
+  text-align: center;
+}
+.responsive {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+}
+.fonts-headers {
+  font-size: 1.8rem;
+  padding: 1rem;
+  font-family: var(--metamorphoses-text);
+}
