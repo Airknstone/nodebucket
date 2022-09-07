@@ -67,10 +67,10 @@ const openapiSpecification = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use("/api/employees", EmployeeAPI);
 /* redirect if path is modified before hashtag */
-/* app.use("/*", function (req, res, next) {
+app.use("/*", function (req, res, next) {
   res.redirect("/");
   next();
-}); */
+});
 // Wire-up the Express server.
 app.listen(PORT, () => {
   console.log("Application started and listening on PORT: " + PORT);
