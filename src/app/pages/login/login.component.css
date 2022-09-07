@@ -45,7 +45,7 @@ Code Attribution: https://material.angular.io
 
 .login-title {
   padding: 5px;
-  color: #d0d0d0;
+  color: #ffffff;
   letter-spacing: 1.5px;
   font-family: "Metamorphous", cursive;
   font-size: 2.2rem;
@@ -58,7 +58,7 @@ Code Attribution: https://material.angular.io
   text-align: center;
   width: 100%;
 }
-img {
+.crest {
   position: absolute;
   top: 50%;
   left: 50%;
