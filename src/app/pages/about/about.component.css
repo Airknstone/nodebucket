@@ -54,19 +54,3 @@ Code Attribution: https://material.angular.io
   width: 50%;
   margin: 0 auto;
 }
-path {
-  stroke-dasharray: 100;
-  fill: rgb(255, 255, 255);
-  animation: dash 5s infinite;
-}
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  50% {
-    stroke-dashoffset: 400;
-  }
-  100% {
-    stroke-dashoffset: 150;
-  }
-}
