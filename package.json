@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "server": "nodemon ./server/index.js",
@@ -32,12 +32,12 @@
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@angular/cli": "~14.0.5",
+    "@angular/compiler-cli": "^14.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.5",
-    "@angular/cli": "~14.0.5",
-    "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
