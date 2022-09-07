@@ -30,7 +30,8 @@ Code Attribution: https://material.angular.io
       </mat-form-field>
       <div fxLayout="row" style="padding-top:50px; float: right;">
         <!-- 2 button layout, cancel and submit -->
-        <button mat-button (click)="closeDialog()" style="margin-right: 30px; color:red;">Cancel <mat-icon>
+        <button mat-button (click)="closeDialog()" type="button" style="margin-right: 30px; color:red;">Cancel
+          <mat-icon>
           </mat-icon></button>
         <button class="submit-button" mat-raised-button type="submit" [disabled]="!taskForm.valid">Add Task
           <mat-icon>

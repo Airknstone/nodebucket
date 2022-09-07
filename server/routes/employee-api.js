@@ -390,7 +390,7 @@ router.delete("/:empId/tasks/:taskId", async (req, res) => {
           });
           /* If item is in done array, delete from array and update database */
         } else if (doneItem) {
-          emp.done.id(todoItem._id).remove();
+          emp.done.id(doneItem._id).remove();
 
           emp.save(function (err, updatedTodoItemEmp) {
             if (err) {
